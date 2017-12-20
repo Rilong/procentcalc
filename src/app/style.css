@@ -1,0 +1,9 @@
+.text-field {
+    -fx-font-size: 30px;
+    -fx-border-style: solid;
+    -fx-border-color: #6f99ec;
+    -fx-border-width: 0 0 3 0;
+    -fx-background-color: -fx-text-box-border, -fx-control-inner-background;
+    -fx-outline: none;
+    -fx-padding: 5px;
+}

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_procentcalc" default="compile.module.procentcalc">
+  <dirname property="module.procentcalc.basedir" file="${ant.file.module_procentcalc}"/>
+  
+  <property name="module.jdk.home.procentcalc" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.procentcalc" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.procentcalc" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.procentcalc" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="procentcalc.output.dir" value="${module.procentcalc.basedir}/out/production/procentCalc"/>
+  <property name="procentcalc.testoutput.dir" value="${module.procentcalc.basedir}/out/test/procentCalc"/>
+  
+  <path id="procentcalc.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="procentcalc.module.production.classpath">
+    <path refid="${module.jdk.classpath.procentcalc}"/>
+  </path>
+  
+  <path id="procentcalc.runtime.production.module.classpath">
+    <pathelement location="${procentcalc.output.dir}"/>
+  </path>
+  
+  <path id="procentcalc.module.classpath">
+    <path refid="${module.jdk.classpath.procentcalc}"/>
+    <pathelement location="${procentcalc.output.dir}"/>
+  </path>
+  
+  <path id="procentcalc.runtime.module.classpath">
+    <pathelement location="${procentcalc.testoutput.dir}"/>
+    <pathelement location="${procentcalc.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.procentcalc">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.procentcalc">
+    <patternset refid="excluded.from.module.procentcalc"/>
+  </patternset>
+  
+  <path id="procentcalc.module.sourcepath">
+    <dirset dir="${module.procentcalc.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.procentcalc" depends="compile.module.procentcalc.production,compile.module.procentcalc.tests" description="Compile module procentCalc"/>
+  
+  <target name="compile.module.procentcalc.production" depends="register.custom.compilers" description="Compile module procentCalc; production classes">
+    <mkdir dir="${procentcalc.output.dir}"/>
+    <javac2 destdir="${procentcalc.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.procentcalc}/javac">
+      <compilerarg line="${compiler.args.procentcalc}"/>
+      <bootclasspath refid="procentcalc.module.bootclasspath"/>
+      <classpath refid="procentcalc.module.production.classpath"/>
+      <src refid="procentcalc.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.procentcalc"/>
+    </javac2>
+    
+    <copy todir="${procentcalc.output.dir}">
+      <fileset dir="${module.procentcalc.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.procentcalc.tests" depends="register.custom.compilers,compile.module.procentcalc.production" description="compile module procentCalc; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.procentcalc" description="cleanup module">
+    <delete dir="${procentcalc.output.dir}"/>
+    <delete dir="${procentcalc.testoutput.dir}"/>
+  </target>
+</project>
