@@ -60,13 +60,13 @@ public class Controller {
     }
 
     public void onChangeText() {
-        if(!number.getText().matches("\\d*")) {
-            number.setText(number.getText().replaceAll("[^\\d]", ""));
+        if(!number.getText().matches("[0-9.]")) {
+            number.setText(number.getText().replaceAll("[^0-9.]", ""));
             number.positionCaret(number.getText().length());
         }
 
-        if(!procent.getText().matches("\\d*")) {
-            procent.setText(procent.getText().replaceAll("[^\\d]", ""));
+        if(!procent.getText().matches("[0-9.]")) {
+            procent.setText(procent.getText().replaceAll("[^0-9.]", ""));
             procent.positionCaret(procent.getText().length());
         }
     }
