@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 
 public class Controller {
 
-    String ResultText;
+    private String ResultText;
 
     @FXML
     TextField number;
