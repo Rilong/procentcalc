@@ -17,9 +17,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         //Application.setUserAgentStylesheet(getClass().getResource("style.css").toExternalForm());
         FlowPane pane = FXMLLoader.load(getClass().getResource("ui.fxml"));
-        Scene scene = new Scene(pane, 400, 450);
+        Scene scene = new Scene(pane, 390, 450);
 
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        primaryStage.resizableProperty().setValue(Boolean.FALSE);
         primaryStage.setScene(scene);
         primaryStage.setTitle("procentCalc");
         primaryStage.getIcons().add(new Image(getClass().getResource("procent.png").toExternalForm()));
